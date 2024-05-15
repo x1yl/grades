@@ -47,7 +47,7 @@ const processElements = async (page, i, j) => {
     const elementTextNo = await page.evaluate((el) => el.textContent.trim(), elementHandleNo);
 
     if (elementTextNo !== "Stein Pd7,8 Algebra" && elementTextNo !== "Stein - Pd7,8 Geometry") {
-      const message = `[${elementText} due at ${elementText2}](${href})`;
+      const message = `[${elementText} due at ${elementText2}](<${href}>)`;
       messages.push(message); // Collect messages in the array
     }
 
@@ -70,7 +70,7 @@ const processElements = async (page, i, j) => {
   puppeteer.use(ua)
   // Set up Puppeteer
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: `new`,
     defaultViewport: null,
     args: ["--start-maximized"],
   });
@@ -192,8 +192,7 @@ const processElements = async (page, i, j) => {
     console.log(allMessages);
   }
 
-  // Take a screenshot
-  await page.screenshot({ path: "screenshot.png" });
+
 
   // Close the browser
   client.destroy();

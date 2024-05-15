@@ -47,7 +47,7 @@ const processElements = async (page, i, j) => {
     const elementTextNo = await page.evaluate((el) => el.textContent.trim(), elementHandleNo);
 
     if (elementTextNo !== "Stein Pd7,8 Algebra" && elementTextNo !== "Stein - Pd7,8 Geometry") {
-      const message = `[${elementText} due last ${elementText2}](${href})`;
+      const message = `[${elementText} due last ${elementText2}](<${href}>)`;
       messages.push(message); // Collect messages in the array
     }
 
